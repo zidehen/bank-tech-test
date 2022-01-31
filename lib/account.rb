@@ -1,30 +1,30 @@
+# frozen_string_literal: true
+
 class Account
-  
   DEFAULT_BALANCE = 0
 
-  attr_reader :balance
+  attr_reader :balance, :amount
 
   def initialize
     @balance = DEFAULT_BALANCE
+    @amount = amount
   end
- 
+
   def deposit(amount)
-    raise 'Invalid deposit' if zero_amount?
+    raise 'Invalid deposit' if amount.zero?
+
     @balance += amount
   end
 
   def withdraw(amount)
     raise 'Insufficient funds in your account' if insuffient_funds?
+
     @balance -= amount
   end
 
   private
 
   def insuffient_funds?
-    @balance < 0
-  end
-
-  def zero_amount?
-    amount == 0
+    @balance.negative?
   end
 end
