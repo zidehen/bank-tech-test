@@ -21,5 +21,9 @@ describe Transaction do
     it 'should have a balance' do
       expect(subject.balance).to eq('500')
     end
+
+    it 'should initialize with an empty array' do
+      expect(subject.transactions).to eq []
+    end
   end
 end
