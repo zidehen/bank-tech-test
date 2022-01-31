@@ -9,11 +9,22 @@ class Account
   end
  
   def deposit(amount)
+    raise 'Invalid deposit' if nil_amount?
     @balance += amount
   end
 
   def withdraw(amount)
-    fail 'Insufficient funds in your account' if @balance < 0
+    raise 'Insufficient funds in your account' if insuffient_funds?
     @balance -= amount
+  end
+
+  private
+
+  def insuffient_funds?
+    @balance < 0
+  end
+
+  def nil_amount?
+    amount == 0
   end
 end

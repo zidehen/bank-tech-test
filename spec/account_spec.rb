@@ -22,8 +22,12 @@ describe Account do
     expect(subject.balance).to eq(80)
   end
 
-  it "it raises an error if tries to withdraw money at zero balance" do
+  it "raises an error if tries to withdraw money at zero balance" do
     subject.withdraw(10)
     expect { subject.withdraw(10) }.to raise_error 'Insufficient funds in your account'
+  end
+
+  it 'raises an error with zero deposit' do
+    expect{ subject.deposit(0) }.to raise_error 'Invalid deposit'
   end
 end
