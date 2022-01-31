@@ -9,7 +9,7 @@ class Account
   end
  
   def deposit(amount)
-    raise 'Invalid deposit' if nil_amount?
+    raise 'Invalid deposit' if zero_amount?
     @balance += amount
   end
 
@@ -24,7 +24,7 @@ class Account
     @balance < 0
   end
 
-  def nil_amount?
+  def zero_amount?
     amount == 0
   end
 end
