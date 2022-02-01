@@ -17,7 +17,24 @@ class Transaction
   def deposit(funds)
     raise 'Invalid deposit' if funds.zero?
 
+    add_balance(funds)
+    view_deposit_transaction(funds)
+  end
+
+  def withdraw(funds)
+    raise 'Insufficient funds in your account' if @balance.negative?
+
+    deduct_balance(funds)
+    view_withdraw_transaction(funds)
+  end
+
+  private
+
+  def add_balance(funds)
     @balance += funds
+  end
+
+  def view_deposit_transaction(funds)
     transaction = {
       date: @date,
       credit: format('%.2f', funds),
@@ -27,10 +44,11 @@ class Transaction
     @transactions << transaction
   end
 
-  def withdraw(funds)
-    raise 'Insufficient funds in your account' if @balance.negative?
-
+  def deduct_balance(funds)
     @balance -= funds
+  end
+
+  def view_withdraw_transaction(funds)
     transaction = {
       date: @date,
       credit: '',
