@@ -28,7 +28,7 @@ describe Transaction do
       expect(subject.transactions).to eq []
     end
   end
-  
+
   describe '#deposit' do
     it 'should increase the bank balance by the specified amount' do
       subject.deposit(100)
