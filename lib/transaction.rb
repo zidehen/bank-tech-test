@@ -11,4 +11,15 @@ class Transaction
     @balance = DEFAULT_BALANCE
     @transactions = []
   end
+
+  def deposit(funds)
+    @balance += funds
+    transaction = {
+      date: @date,
+      credit: format('%.2f', funds),
+      debit: '',
+      balance: format('%.2f', @balance)
+    }
+    @transactions << transaction
+  end
 end
